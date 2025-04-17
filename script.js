@@ -215,6 +215,90 @@ function playSong(id) {
 
 // Then, test it by clicking the play button.
 
+// Step 17
+// Anytime you click the play button, the first song of your playlist
+// will always play. To fix this, within the arrow function of the
+// event listener, replace playSong(0) with an if statement that checks
+// if userData.currentSong is null.
+
+// Inside the if block, call the playSong function with the id of the
+// first song in the userData.songs array.
+
+// Step 18
+// Add an else block. Inside the else block, call the playSong function
+// with the id of the currently playing song as an argument.
+
+// This ensures that the currently playing song will continue to play
+// when the play button is clicked.
+
 playButton.addEventListener("click", function () {
-  playSong(0);
+  if (userData.currentSong === null) {
+    playSong(0);
+  } else {
+    playSong(userData.currentSong.id);
+  }
 });
+
+// Step 19
+// Now, use the querySelectorAll method to target the .playlist-song
+// elements and store them in a variable named songs.
+
+// Then, call the forEach method on songs. Pass in a callback function
+// that uses song as the parameter to the method. Leave the curly
+// braces empty for now.
+
+// Step 20
+// When you click a song of your playlist you want to play that song.
+// For that you'll need to add an event listener for the click event
+// on each button element which is a child of a song element.
+
+// Complete the callback of your forEach to do that. Inside the
+// addEventListener callback, call playSong(n), where n is the song
+// id that you can get from the id attribute of song.
+
+// Note that each song has an id attribute of song-n: you'll need to
+// get the n part and convert it into a number before passing it to
+// playSong().
+
+const songs = document.querySelectorAll(".playlist-song");
+songs.forEach((song) => {
+  const button = song.querySelector("button");
+  button.addEventListener("click", () => {
+    const idString = song.id.split("-")[1];
+    const id = Number(idString);
+    playSong(id);
+  });
+});
+
+// Step 21
+// Now you need to work on pausing the currently playing song.
+
+// Define a pauseSong function that takes no parameters. Within your
+// new function, to store the current time of the song when it is
+// paused, set the songCurrentTime of the userData object to the
+// currentTime of the audio variable.
+
+function pauseSong() {
+  userData.songCurrentTime = audio.currentTime;
+  // Step 22
+  // Use classList and remove() method to remove the playing class from the
+  // playButton, since the song will be paused at this point.
+
+  // To finally pause the song, use the pause() method on the audio variable.
+  // pause() is a method of the Web Audio API for pausing music files.
+  playButton.classList.remove("playing");
+  audio.pause();
+}
+
+// Step 23
+// Now it is time to test out the pause button.
+
+// Add a "click" event listener to the pauseButton element, then pass
+// in pauseSong as the second argument of the event listener. This is
+// the function the event listener will run.
+
+// Test out your app by first clicking on the play button followed by
+// the pause button. You should see that everything is working as
+// expected.
+
+pauseButton.addEventListener("click", pauseSong);
