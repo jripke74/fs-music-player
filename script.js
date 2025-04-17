@@ -325,7 +325,8 @@ function getCurrentSongIndex() {
 // undefined if the current song is the last one in the playlist.
 
 function getNextSong() {
-  return getCurrentSongIndex() + userData.songs;
+  let song = userData.songs.getCurrentSongIndex();
+  return song;
 }
 
 pauseButton.addEventListener("click", pauseSong);
