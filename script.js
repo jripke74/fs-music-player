@@ -301,4 +301,31 @@ function pauseSong() {
 // the pause button. You should see that everything is working as
 // expected.
 
+// Step 24
+// Before you start working on playing the next and previous song, you 
+// need to get the index of each song in the songs property of userData. 
+// To do that you can use the indexOf() array method, which returns the 
+// first index at which a given element can be found in the array, or -1 
+// if the element is not present.
+
+// Example Code
+// const animals = ["dog", "cat", "horse"];
+// animals.indexOf("cat") // 1
+// Create a function named getCurrentSongIndex that returns the index at 
+// which userData.currentSong can be found in userData.songs and -1 when 
+// the current song is null.
+
+function getCurrentSongIndex() {
+  return userData.songs.indexOf(userData.currentSong);
+}
+
+// Step 25
+// Now, create a function named getNextSong. Make it return the song that 
+// can be found at getCurrentSongIndex() plus one in userData.songs, or 
+// undefined if the current song is the last one in the playlist.
+
+function getNextSong() {
+  return getCurrentSongIndex() + userData.songs;
+}
+
 pauseButton.addEventListener("click", pauseSong);
