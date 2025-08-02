@@ -127,9 +127,12 @@ function getCurrentSongIndex() {
   return userData.songs.indexOf(userData.currentSong);
 }
 
-function getNextSong() {
-  let song = userData.songs.getCurrentSongIndex();
-  return song;
-}
+// function getNextSong() {
+//   const currentSongIndex = getCurrentSongIndex();
+//   const nextSong = currentSongIndex + 1;
+//   return userData.songs[nextSong] === -1 ? udefined : userData.songs[nextSong];
+// }
+
+const getNextSong = () => userData.songs[getCurrentSongIndex() + 1];
 
 pauseButton.addEventListener("click", pauseSong);

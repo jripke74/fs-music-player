@@ -137,3 +137,26 @@ Step 21
 Now you need to work on pausing the currently playing song.
 
 Define a pauseSong function that takes no parameters. Within your new function, to store the current time of the song when it is paused, set the songCurrentTime of the userData object to the currentTime of the audio variable.
+
+Step 22
+Use classList and remove() method to remove the playing class from the playButton, since the song will be paused at this point.
+
+To finally pause the song, use the pause() method on the audio variable. pause() is a method of the Web Audio API for pausing music files.
+
+Step 23
+Now it is time to test out the pause button.
+
+Add a "click" event listener to the pauseButton element, then pass in pauseSong as the second argument of the event listener. This is the function the event listener will run.
+
+Test out your app by first clicking on the play button followed by the pause button. You should see that everything is working as expected.
+
+Step 24
+Before you start working on playing the next and previous song, you need to get the index of each song in the songs property of userData. To do that you can use the indexOf() array method, which returns the first index at which a given element can be found in the array, or -1 if the element is not present.
+
+Example Code
+const animals = ["dog", "cat", "horse"];
+animals.indexOf("cat") // 1
+Create a function named getCurrentSongIndex that returns the index at which userData.currentSong can be found in userData.songs and -1 when the current song is null.
+
+Step 25
+Now, create a function named getNextSong. Make it return the song that can be found at getCurrentSongIndex() plus one in userData.songs, or undefined if the current song is the last one in the playlist.
