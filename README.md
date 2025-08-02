@@ -10,3 +10,130 @@ In this workshop you will create a music player app capable of playing, pausing,
 The HTML and CSS of this project have been provided for you, so you can focus on the JavaScript.
 
 Start by accessing the #playlist-songs, #play, and #pause elements and assign them to the variables playlistSongs, playButton and pauseButton, respectively.
+
+Step 2
+Access the #next and #previous elements from the HTML file.
+
+Assign them to variables named nextButton, and previousButton, respectively.
+
+Step 3
+Next, create an empty array named allSongs to store all the songs.
+
+Step 4
+Inside the allSongs array, create an object with the following properties and values:
+
+Example Code
+id: 0,
+title: "Scratching The Surface",
+artist: "Quincy Larson",
+duration: "4:25",
+src: "https://cdn.freecodecamp.org/curriculum/js-music-player/scratching-the-surface.mp3",
+
+Step 5
+Add a second object with the following keys and values:
+
+Example Code
+id: 1,
+title: "Can't Stay Down",
+artist: "Quincy Larson",
+duration: "4:15",
+src: "https://cdn.freecodecamp.org/curriculum/js-music-player/can't-stay-down.mp3",
+
+Step 6
+Add a third object with the following properties and values:
+
+Example Code
+id: 2,
+title: "Still Learning",
+artist: "Quincy Larson",
+duration: "3:51",
+src: "https://cdn.freecodecamp.org/curriculum/js-music-player/still-learning.mp3",
+
+Step 7
+The rest of the songs has been added to the allSongs array for you.
+
+In the previous lecture video, you learned about the Web Audio API and how to use it to play songs. All modern browsers support the Web Audio API, which lets you generate and process audio in web applications.
+
+Create a variable named audio and set it equal to new Audio(). This will create a new HTML5 audio element.
+
+Step 8
+Your music player should keep track of the songs, the current song playing, and the time of the current song. To do this, you will need to create an object to store this information.
+
+Start by declaring a new variable called userData and assign it an empty object.
+
+Step 9
+In your userData object, create a songs property and set its value to the allSongs array.
+
+Then, to handle the current song's information and track its playback time, create a currentSong and songCurrentTime properties. Set the values to null and 0, respectively.
+
+Step 10
+It's time to begin implementing the functionality for playing the displayed songs.
+
+Define a playSong function that takes an single parameter which will represent the unique identifier of the song you want to play.
+
+Step 11
+The find() method retrieves the first element within an array that fulfills the conditions specified in the provided callback function. If no element satisfies the condition, the method returns undefined.
+
+In the example below, the find() method is used to find the first number greater than 25:
+
+Example Code
+const numbers = [10, 20, 30, 40, 50];
+
+// Find the first number greater than 25
+const foundNumber = numbers.find((number) => number > 25);
+console.log(foundNumber); // Output: 30
+Within your playSong function, use the find() method on the userData.songs array to search for a song which has an id strictly equal to the id passed into the playSong function. Assign the find call to a variable named song.
+
+Step 12
+Still inside the playSong function, set the audio.src property equal to song.src. This tells the audio element where to find the audio data for the selected song.
+
+Also, set the audio.title property equal to song.title. This tells the audio element what to display as the title of the song.
+
+Step 13
+Before playing the song, you need to make sure it starts from the beginning. This can be achieved by the use of the currentTime property on the audio object.
+
+Add an if statement to check if no current song is playing by verifying that userData.currentSong is falsy. Inside if block, set the currentTime property of the audio object to 0.
+
+Step 14
+Add an else block to handle the song's current playback time. This allows you to resume the current song at the point where it was paused.
+
+Within the else block, set the currentTime property of the audio object to the value stored in userData.songCurrentTime.
+
+Step 15
+Next, use the classList property and the add() method to add the playing class to the playButton element. This will look for the class playing in the CSS file and add it to the playButton element.
+
+Then, set userData.currentSong to song, and to finally play the song, use the play() method on the audio variable. play() is a method from the web audio API for playing an mp3 file.
+
+Step 16
+In previous steps you built out the functionality for playing a song. Now you need to add the functionality to the play button.
+
+Use the addEventListener() method on playButton and pass in a "click" event for the first argument. For now, use a callback that calls playSong(0) as the second argument.
+
+Then, test it by clicking the play button.
+
+Step 17
+Anytime you click the play button, the first song of your playlist will always play. To fix this, within the arrow function of the event listener, replace playSong(0) with an if statement that checks if userData.currentSong is null.
+
+Inside the if block, call the playSong function with the id of the first song in the userData.songs array.
+
+Step 18
+Add an else block. Inside the else block, call the playSong function with the id of the currently playing song as an argument.
+
+This ensures that the currently playing song will continue to play when the play button is clicked.
+
+Step 19
+Now, use the querySelectorAll method to target the .playlist-song elements and store them in a variable named songs.
+
+Then, call the forEach method on songs. Pass in a callback function that uses song as the parameter to the method. Leave the curly braces empty for now.
+
+Step 20
+When you click a song of your playlist you want to play that song. For that you'll need to add an event listener for the click event on each button element which is a child of a song element.
+
+Complete the callback of your forEach to do that. Inside the addEventListener callback, call playSong(n), where n is the song id that you can get from the id attribute of song.
+
+Note that each song has an id attribute of song-n: you'll need to get the n part and convert it into a number before passing it to playSong().
+
+Step 21
+Now you need to work on pausing the currently playing song.
+
+Define a pauseSong function that takes no parameters. Within your new function, to store the current time of the song when it is paused, set the songCurrentTime of the userData object to the currentTime of the audio variable.
