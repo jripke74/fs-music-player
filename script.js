@@ -1,9 +1,8 @@
 const playlistSongs = document.getElementById("playlist-songs");
 const playButton = document.getElementById("play");
 const pauseButton = document.getElementById("pause");
-const nextButton = document.getElementById("nest");
+const nextButton = document.getElementById("next");
 const previousButton = document.getElementById("previous");
-
 const allSongs = [
   {
     id: 0,
@@ -83,56 +82,65 @@ const userData = {
   songs: allSongs,
   currentSong: null,
   songCurrentTime: 0,
-};
+}
 
-function playSong(id) {
+const playSong = id => {
   const song = userData.songs.find((song) => song.id === id);
   audio.src = song.src;
   audio.title = song.title;
   if (userData.currentSong === null) {
-    audio.currentTime = 0;
+    audio.currentTime = 0
   } else {
     audio.currentTime = userData.songCurrentTime;
   }
   userData.currentSong = song;
   playButton.classList.add("playing");
-  audio.play();
+  audio.play()
 }
 
-playButton.addEventListener("click", function () {
+const pauseSong = () => {
+  userData.songCurrentTime = audio.currentTime;
+  playButton.classList.remove("playing");
+  audio.pause();
+}
+
+const getCurrentSongIndex = () => userData.songs.indexOf(userData.currentSong);
+
+const getNextSong = () => userData.songs[getCurrentSongIndex() + 1];
+
+const playNextSong = () => {
   if (userData.currentSong === null) {
-    playSong(0);
+    playSong(userData.songs[0].id);
+  } else {
+    console.log(userData.songs.length < userData.currrentSong.id);
+    if (userData.songs.length < userData.currrentSong.id && userData.currentSong) {
+      playSong(userData.currentSong.id + 1);
+      console.log(userData.currentSong.id);
+    } else {
+      userData.currentSong = null;
+      userData.songCurrentTime = 0;
+      pauseSong();
+    }
+  }
+}
+
+
+playButton.addEventListener("click", () => {
+  if (userData.currentSong === null) {
+    playSong(userData.songs[0].id);
   } else {
     playSong(userData.currentSong.id);
   }
 });
 
 const songs = document.querySelectorAll(".playlist-song");
+
 songs.forEach((song) => {
-  const button = song.querySelector("button");
-  button.addEventListener("click", () => {
-    const idString = song.id.split("-")[1];
-    const id = Number(idString);
-    playSong(id);
-  });
+  const id = song.getAttribute("id").slice(5);
+  const songBtn = song.querySelector("button");
+  songBtn.addEventListener("click", () => {
+      playSong(Number(id));
+  })
 });
-
-function pauseSong() {
-  userData.songCurrentTime = audio.currentTime;
-  playButton.classList.remove("playing");
-  audio.pause();
-}
-
-function getCurrentSongIndex() {
-  return userData.songs.indexOf(userData.currentSong);
-}
-
-// function getNextSong() {
-//   const currentSongIndex = getCurrentSongIndex();
-//   const nextSong = currentSongIndex + 1;
-//   return userData.songs[nextSong] === -1 ? udefined : userData.songs[nextSong];
-// }
-
-const getNextSong = () => userData.songs[getCurrentSongIndex() + 1];
 
 pauseButton.addEventListener("click", pauseSong);

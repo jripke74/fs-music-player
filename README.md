@@ -160,3 +160,13 @@ Create a function named getCurrentSongIndex that returns the index at which user
 
 Step 25
 Now, create a function named getNextSong. Make it return the song that can be found at getCurrentSongIndex() plus one in userData.songs, or undefined if the current song is the last one in the playlist.
+
+Step 26
+Now that you know how to find the next song to play, create a function named playNextSong. Inside the playNextSong function, create an if statement to check if the currentSong of userData is strictly equal to null. This will check if there's no current song playing in the userData object.
+
+If the condition is true, call the playSong function with the id of the first song in the userData.songs array as an argument.
+
+Step 27
+If userData.currentSong is not null you need to find the next song to play. Remember that you can use getNextSong for that.
+
+Complete your playNextSong function so that it plays the next song in the playlist. If the current song is the last one, set userData.currentSong to null, userData.songCurrentTime to zero and call the pauseSong function.
