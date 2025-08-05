@@ -220,3 +220,8 @@ Step 39
 Inside the playSong function, call the highlightCurrentSong function.
 
 After that, play around with the control buttons to see how the highlightCurrentSong function works.
+
+Step 40
+Next, you need to display the current song title and artist in the player display.
+
+As a first step, access the #player-song-title and #player-song-artist elements, responsible for displaying the song title and artist, and store them into the variables playingSong and songArtist, respectively.
