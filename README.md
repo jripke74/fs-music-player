@@ -205,3 +205,8 @@ Step 36
 If you check closely, you'd see the currently playing song is not highlighted in the playlist, so you don't really know which song is playing. You can fix this by creating a function to highlight any song that is being played.
 
 Create a function named highlightCurrentSong. Inside the function, check that a .playlist-song element with aria-current="true" exists. If so, use the removeAttribute method to remove the aria-current attribute from it.
+
+Step 37
+You need to get the id of the currently playing song. For this, you can use userData.currentSong?.id.
+
+Use getElementById() to select the currently playing song: pass a template literal to prefix the id with song-. Assign it to a variable named songToHighlight.
