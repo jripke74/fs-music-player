@@ -215,3 +215,8 @@ Step 38
 Now, you need to add the aria-current attribute to the currently playing song.
 
 Check if songToHighlight exists. If so, use the setAttribute method on songToHighlight and pass in "aria-current" and "true" as the first and second arguments.
+
+Step 39
+Inside the playSong function, call the highlightCurrentSong function.
+
+After that, play around with the control buttons to see how the highlightCurrentSong function works.
