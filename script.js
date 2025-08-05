@@ -112,7 +112,7 @@ const playNextSong = () => {
   if (userData.currentSong === null) {
     playSong(userData.songs[0].id);
   } else {
-    console.log(userData.songs.length < userData.currrentSong.id);
+    console.log(userData.songs.length + 1 < userData.currrentSong.id);
     if (userData.songs.length < userData.currrentSong.id && userData.currentSong) {
       playSong(userData.currentSong.id + 1);
       console.log(userData.currentSong.id);

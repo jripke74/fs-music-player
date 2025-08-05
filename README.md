@@ -170,3 +170,24 @@ Step 27
 If userData.currentSong is not null you need to find the next song to play. Remember that you can use getNextSong for that.
 
 Complete your playNextSong function so that it plays the next song in the playlist. If the current song is the last one, set userData.currentSong to null, userData.songCurrentTime to zero and call the pauseSong function.
+
+Step 28
+Now it is time to test out the playNextSong function.
+
+Add a "click" event listener to the nextButton element, then pass in playNextSong as the second argument of your event listener. This is the function the event listener will run.
+
+Test out your app by first clicking on the play button followed by the next button. You should see that everything is working as expected.
+
+Step 29
+Now, create a function named getPreviousSong. Make it return the song that can be found at getCurrentSongIndex() minus one in userData.songs, or undefined if the current song is the first one in the playlist.
+
+Step 30
+Create a function named playPreviousSong. Inside your new function, use the value returned by the getPreviousSong function to find the song to play. When getPreviousSong() is undefined, play the first song in your playlist. Otherwise, play the song before the current song playing.
+
+Step 31
+Add a "click" event listener to the previousButton element, then pass in playPreviousSong as the second argument.
+
+Step 32
+If you play a bit with your player you'll notice a few bugs. First, when you play a song, pause it and then press either the previous button or next button, the song won't start from the beginning.
+
+To start fixing that, add second parameter named start to your playSong function. Give it the default value of true.
