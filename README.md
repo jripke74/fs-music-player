@@ -191,3 +191,17 @@ Step 32
 If you play a bit with your player you'll notice a few bugs. First, when you play a song, pause it and then press either the previous button or next button, the song won't start from the beginning.
 
 To start fixing that, add second parameter named start to your playSong function. Give it the default value of true.
+
+Step 33
+Now, use the OR operator to add the start parameter as a second condition to the if statement after userData.currentSong === null.
+
+Step 34
+Finally, pass false as the second argument to the playSong(userData.currentSong.id) function call. Then, test that everything works as expected by playing a song, pausing it and then pressing either the previous button or the next button.
+
+Step 35
+If you press the previous button when no song is playing, the first song will play. To fix this, add an if statement at the beginning of the playPreviousSong function. Check if the current song is null and stop the function execution with a return statement.
+
+Step 36
+If you check closely, you'd see the currently playing song is not highlighted in the playlist, so you don't really know which song is playing. You can fix this by creating a function to highlight any song that is being played.
+
+Create a function named highlightCurrentSong. Inside the function, check that a .playlist-song element with aria-current="true" exists. If so, use the removeAttribute method to remove the aria-current attribute from it.
