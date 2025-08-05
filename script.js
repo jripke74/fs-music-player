@@ -82,27 +82,27 @@ const userData = {
   songs: allSongs,
   currentSong: null,
   songCurrentTime: 0,
-}
+};
 
-const playSong = (id, start=true) => {
+const playSong = (id, start = true) => {
   const song = userData.songs.find((song) => song.id === id);
   audio.src = song.src;
   audio.title = song.title;
   if (userData.currentSong === null || start) {
-    audio.currentTime = 0
+    audio.currentTime = 0;
   } else {
     audio.currentTime = userData.songCurrentTime;
   }
   userData.currentSong = song;
   playButton.classList.add("playing");
-  audio.play()
-}
+  audio.play();
+};
 
 const pauseSong = () => {
   userData.songCurrentTime = audio.currentTime;
   playButton.classList.remove("playing");
   audio.pause();
-}
+};
 
 const getCurrentSongIndex = () => userData.songs.indexOf(userData.currentSong);
 
@@ -123,7 +123,7 @@ const playPreviousSong = () => {
 const playNextSong = () => {
   if (userData.currentSong === null) {
     playSong(userData.songs[0].id);
-    return
+    return;
   }
   const nextSong = getNextSong();
   if (nextSong) {
@@ -133,13 +133,19 @@ const playNextSong = () => {
     userData.songCurrentTime = 0;
     pauseSong();
   }
-}
-
+};
 
 const highlightCurrentSong = () => {
-  const previousCurrentSong = document.querySelector('.playlist-song[aria-current="true"]');
+  const previousCurrentSong = document.querySelector(
+    '.playlist-song[aria-current="true"]'
+  );
   previousCurrentSong?.removeAttribute("aria-current");
-  const songToHighlight = document.getElementById(`song-${userData.currentSong?.id}`);
+  const songToHighlight = document.getElementById(
+    `song-${userData.currentSong?.id}`
+  );
+  if (songToHighlight) {
+    songToHighlight.setAttribute("aria-current", "true");
+  }
 };
 
 playButton.addEventListener("click", () => {
@@ -156,9 +162,9 @@ songs.forEach((song) => {
   const id = song.getAttribute("id").slice(5);
   const songBtn = song.querySelector("button");
   songBtn.addEventListener("click", () => {
-      playSong(Number(id));
-  })
-})
+    playSong(Number(id));
+  });
+});
 
 pauseButton.addEventListener("click", pauseSong);
 
