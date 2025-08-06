@@ -225,3 +225,8 @@ Step 40
 Next, you need to display the current song title and artist in the player display.
 
 As a first step, access the #player-song-title and #player-song-artist elements, responsible for displaying the song title and artist, and store them into the variables playingSong and songArtist, respectively.
+
+Step 41
+Create a function named setPlayerDisplay. Inside the function, set the textContent of playingSong to the current song's title, if defined. Otherwise, set it to an empty string.
+
+Below that, set the textContent of songArtist to the current song's artist, if defined. Otherwise, set it to empty string.

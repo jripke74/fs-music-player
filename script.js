@@ -135,6 +135,20 @@ const playNextSong = () => {
   }
 };
 
+function setPlayerDisplay() {
+  if (getCurrentSongIndex() !== -1) {
+    console.log(userData.currentSong.title);
+    playingSong.textContent = userData.currentSong.title;
+  } else {
+    playingSong.textContent = "";
+  }
+  if (getCurrentSongIndex() !== -1) {
+    songArtist.textContent = userData.currentSong.artist;
+  } else {
+    songArtist.textContent = "";
+  }
+}
+
 const highlightCurrentSong = () => {
   const previousCurrentSong = document.querySelector(
     '.playlist-song[aria-current="true"]'
