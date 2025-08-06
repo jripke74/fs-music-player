@@ -243,3 +243,15 @@ Create a function named setPlayButtonAccessibleText. Inside the function, set th
 
 Step 44
 Now, call the setPlayButtonAccessibleText function inside the playSong function.
+
+Step 45
+Inside the playNextSong function, call the setPlayerDisplay, highlightCurrentSong, and setPlayButtonAccessibleText functions to correctly update the player when the playlist ends.
+
+Step 46
+Notice that the album art in the HTML and songs in the userData.songs array have changed. We've swapped out the original songs for shorter ones that you can use to test your app.
+
+All the core functionalities are now in place. The only issue now is that the next song does not automatically play when the currently playing song ends.
+
+To fix that, you can set up an event listener which will detect when the currently playing song ends. The "ended" event listener is appropriate for this. It is fired when the playback of a media reaches the end.
+
+Add an event listener to the audio element which listens for the "ended" event and pass in a reference to the playNextSong function. With that the music player project is complete!
