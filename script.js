@@ -162,6 +162,14 @@ const highlightCurrentSong = () => {
   }
 };
 
+function setPlayButtonAccessibleText() {
+  if (userData.currentSong === null) {
+    playButton.setAttribute("aria-label", "Play");
+  } else {
+    playButton.setAttribute("aria-label", `Play ${userData.currentSong.title}`);
+  }
+}
+
 playButton.addEventListener("click", () => {
   if (userData.currentSong === null) {
     playSong(userData.songs[0].id);
